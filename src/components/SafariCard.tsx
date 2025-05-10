@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import { Star, Calendar, MapPin } from "lucide-react";
 
 interface SafariCardProps {
   id: string;
@@ -12,6 +12,7 @@ interface SafariCardProps {
   description: string;
   price?: number;
   days?: number;
+  location?: string;
   featured?: boolean;
 }
 
@@ -23,6 +24,7 @@ const SafariCard = ({
   description, 
   price, 
   days,
+  location,
   featured = false
 }: SafariCardProps) => {
   return (
@@ -48,18 +50,27 @@ const SafariCard = ({
           </div>
         </div>
         
-        {(price || days) && (
-          <div className="flex justify-between text-sm text-gray-600 mb-3">
-            {price && <span className="font-semibold">From ${price.toLocaleString()}</span>}
-            {days && <span>{days} days</span>}
-          </div>
-        )}
+        <div className="flex flex-wrap gap-3 text-sm text-gray-600 mb-3">
+          {price && <span className="font-semibold">From ${price.toLocaleString()}</span>}
+          {days && (
+            <div className="flex items-center">
+              <Calendar className="h-3.5 w-3.5 mr-1" />
+              <span>{days} days</span>
+            </div>
+          )}
+          {location && (
+            <div className="flex items-center">
+              <MapPin className="h-3.5 w-3.5 mr-1" />
+              <span>{location}</span>
+            </div>
+          )}
+        </div>
         
         <p className="text-gray-600 mb-4 text-sm line-clamp-3">{description}</p>
         
         <Button asChild className="w-full mt-2" variant="outline">
           <Link to={`/safaris/${id}`}>
-            View Itinerary
+            View Details
           </Link>
         </Button>
       </CardContent>
