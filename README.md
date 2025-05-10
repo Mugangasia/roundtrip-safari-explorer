@@ -1,8 +1,26 @@
-# Welcome to your Lovable project
+# Roundtrip Safari Explorer
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/d465576e-253d-479f-b13d-6004c058a74b
+
+## About this project
+
+Roundtrip Safari Explorer is a modern web application built with React, TypeScript, and Tailwind CSS that helps travelers discover and plan their perfect African safari adventures. The platform offers:
+
+- **Diverse Safari Packages**: From the Maasai Mara's wildlife spectacles to Zanzibar's beach escapes
+- **Interactive Trip Planning**: Detailed itineraries, pricing, and booking information for each safari package
+- **Rich Media Experience**: High-quality imagery and comprehensive trip details
+- **Conservation Focus**: Special packages focused on wildlife conservation and sustainable tourism
+- **Customization Options**: Various group sizes, durations, and destinations to suit different preferences
+- **Real-time Support**: Integrated WhatsApp support for instant communication
+
+### Technical Stack
+
+- React with TypeScript for robust frontend development
+- Vite for lightning-fast build tooling
+- Tailwind CSS for responsive styling
+- shadcn/ui for polished UI components
 
 ## How can I edit this code?
 
@@ -49,16 +67,6 @@ npm run dev
 - Select the "Codespaces" tab.
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
 
 ## How can I deploy this project?
 
