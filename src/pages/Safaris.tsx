@@ -1,5 +1,5 @@
-
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { safaris } from "@/data/safaris";
 import SafariCard from "@/components/SafariCard";
 import Layout from "@/components/Layout";
