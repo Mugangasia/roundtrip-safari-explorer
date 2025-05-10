@@ -68,7 +68,7 @@ const SafariCard = ({
         
         <p className="text-gray-600 mb-4 text-sm line-clamp-3">{description}</p>
         
-        <Button asChild className="w-full mt-2" variant="outline">
+        <Button asChild className="w-full mt-2 bg-safari-600 hover:bg-safari-700 text-white">
           <Link to={`/safaris/${id}`}>
             View Details
           </Link>

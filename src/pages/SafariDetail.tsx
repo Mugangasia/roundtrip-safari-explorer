@@ -86,11 +86,13 @@ const SafariDetail = () => {
       <section className="py-12 bg-white">
         <div className="safari-container">
           <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="w-full justify-start mb-8 bg-safari-50 p-1 overflow-x-auto flex-nowrap">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="itinerary">Itinerary</TabsTrigger>
-              <TabsTrigger value="inclusions">Inclusions & Exclusions</TabsTrigger>
-            </TabsList>
+            <div className="bg-safari-50 rounded-lg overflow-hidden mb-8">
+              <TabsList className="w-full justify-start bg-transparent p-0">
+                <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-safari-600 data-[state=active]:bg-white data-[state=active]:text-safari-800">Overview</TabsTrigger>
+                <TabsTrigger value="itinerary" className="rounded-none border-b-2 border-transparent data-[state=active]:border-safari-600 data-[state=active]:bg-white data-[state=active]:text-safari-800">Itinerary</TabsTrigger>
+                <TabsTrigger value="inclusions" className="rounded-none border-b-2 border-transparent data-[state=active]:border-safari-600 data-[state=active]:bg-white data-[state=active]:text-safari-800">Inclusions & Exclusions</TabsTrigger>
+              </TabsList>
+            </div>
             
             <TabsContent value="overview" className="animate-fade-in">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
