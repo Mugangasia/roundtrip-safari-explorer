@@ -66,7 +66,7 @@ const HeroSlider = ({ slides = defaultSlides }: HeroSliderProps) => {
     <div className="relative bg-safari-950 text-white">
       <Carousel
         className="w-full"
-        onSelect={(index) => setCurrentSlide(index)}
+        onSelect={(index: number) => setCurrentSlide(index)}
         opts={{
           loop: true,
           align: "start",
