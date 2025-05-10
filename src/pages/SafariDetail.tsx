@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom";
 import { safaris } from "@/data/safaris";
 import Layout from "@/components/Layout";
@@ -91,6 +90,7 @@ const SafariDetail = () => {
                 <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-safari-600 data-[state=active]:bg-white data-[state=active]:text-safari-800">Overview</TabsTrigger>
                 <TabsTrigger value="itinerary" className="rounded-none border-b-2 border-transparent data-[state=active]:border-safari-600 data-[state=active]:bg-white data-[state=active]:text-safari-800">Itinerary</TabsTrigger>
                 <TabsTrigger value="inclusions" className="rounded-none border-b-2 border-transparent data-[state=active]:border-safari-600 data-[state=active]:bg-white data-[state=active]:text-safari-800">Inclusions & Exclusions</TabsTrigger>
+                <TabsTrigger value="map" className="rounded-none border-b-2 border-transparent data-[state=active]:border-safari-600 data-[state=active]:bg-white data-[state=active]:text-safari-800">Map</TabsTrigger>
               </TabsList>
             </div>
             
@@ -221,6 +221,44 @@ const SafariDetail = () => {
                       </li>
                     ))}
                   </ul>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="map" className="animate-fade-in">
+              <div className="max-w-4xl">
+                <h2 className="text-3xl font-display font-semibold mb-6">Location Map</h2>
+                <div className="bg-safari-50 p-4 rounded-lg mb-6">
+                  <p className="text-gray-700 mb-4">Explore the beautiful region of {safari.location} where this safari adventure takes place.</p>
+                </div>
+                
+                <div className="aspect-[16/9] overflow-hidden rounded-lg border border-safari-200 shadow-md mb-8">
+                  <div className="relative w-full h-full">
+                    {/* Map image placeholder - in a real app, this could be an interactive map */}
+                    <img 
+                      src={`https://source.unsplash.com/featured/?${safari.location.toLowerCase().replace(/\s+/g, '')},safari,map`} 
+                      alt={`Map of ${safari.location}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                      <div className="flex items-center">
+                        <MapPin className="h-5 w-5 text-white mr-2" />
+                        <span className="text-white font-semibold">{safari.location}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded-lg shadow-sm border border-safari-100 p-6">
+                  <h3 className="text-xl font-semibold mb-3">About the Location</h3>
+                  <p className="text-gray-700 mb-4">
+                    {safari.location} is known for its diverse wildlife and stunning landscapes. This region 
+                    offers travelers a chance to experience the authentic African wilderness up close.
+                  </p>
+                  <div className="flex items-center text-safari-600">
+                    <MapPin className="h-4 w-4 mr-1" />
+                    <span className="text-sm font-medium">GPS coordinates available on request</span>
+                  </div>
                 </div>
               </div>
             </TabsContent>
