@@ -1,21 +1,33 @@
 
-import Hero from "@/components/Hero";
+import HeroSlider from "@/components/HeroSlider";
 import SafariCard from "@/components/SafariCard";
 import Testimonial from "@/components/Testimonial";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import PromoPopup from "@/components/PromoPopup";
 import { Button } from "@/components/ui/button";
 import { safaris } from "@/data/safaris";
 import { testimonials } from "@/data/testimonials";
+import { promos } from "@/data/promos";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 
 const Index = () => {
   // Get featured safaris
   const featuredSafaris = safaris.filter(safari => safari.featured);
+  
+  // Get the first active promo
+  const activePromo = promos.find(promo => promo.enabled);
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <Hero />
+      {/* Hero Slider Section */}
+      <HeroSlider />
+
+      {/* WhatsApp Button */}
+      <WhatsAppButton phoneNumber="2028839907" />
+
+      {/* Promotional Popup */}
+      {activePromo && <PromoPopup promo={activePromo} />}
 
       {/* Featured Safaris Section */}
       <section className="py-20 bg-white">
