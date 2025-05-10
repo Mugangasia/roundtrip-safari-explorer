@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import {
@@ -8,6 +8,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 
 type SlideType = {
@@ -53,20 +54,44 @@ interface HeroSliderProps {
 
 const HeroSlider = ({ slides = defaultSlides }: HeroSliderProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+
+  // Handle carousel API changes
+  const onApiChange = useCallback((api: CarouselApi | undefined) => {
+    if (api) {
+      setApi(api);
+    }
+  }, []);
+
+  // Update current slide when carousel changes
+  useEffect(() => {
+    if (!api) return;
+    
+    const onSelect = () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    };
+    
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   // Auto-advance slides
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      if (api) {
+        api.scrollNext();
+      }
     }, 7000);
     return () => clearInterval(interval);
-  }, [slides.length]);
+  }, [api]);
 
   return (
     <div className="relative bg-safari-950 text-white">
       <Carousel
         className="w-full"
-        onSelect={(index: number) => setCurrentSlide(index)}
+        setApi={onApiChange}
         opts={{
           loop: true,
           align: "start",
@@ -139,7 +164,7 @@ const HeroSlider = ({ slides = defaultSlides }: HeroSliderProps) => {
           {slides.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentSlide(index)}
+              onClick={() => api?.scrollTo(index)}
               className={`h-3 rounded-full transition-all ${
                 index === currentSlide ? "w-8 bg-safari-500" : "w-3 bg-white/50 hover:bg-white/80"
               }`}
